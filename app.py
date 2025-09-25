@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, conlist
 import joblib
 import numpy as np
@@ -13,6 +14,15 @@ vectorizer = joblib.load("models/text_vectorizer.pkl")  # TF-IDF vectorizer
 
 # ---------------- FastAPI setup ----------------
 app = FastAPI(title="Mental Illness Detection API (Lightweight)")
+
+# ---------------- Add CORS middleware ----------------
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8080"],  # Allow your frontend port
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # ---------------- Request model ----------------
 class PredictionRequest(BaseModel):
