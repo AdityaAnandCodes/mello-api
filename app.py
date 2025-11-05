@@ -18,7 +18,7 @@ app = FastAPI(title="Mental Illness Detection API (Lightweight)")
 # ---------------- Add CORS middleware ----------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080", "https://moodbloom-site.onrender.com"],  # Allow your frontend port
+    allow_origins=["*"],  # Allow your frontend port
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
