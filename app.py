@@ -13,6 +13,13 @@ vectorizer = joblib.load("models/text_vectorizer.pkl")  # TF-IDF vectorizer
 
 # ---------------- FastAPI setup ----------------
 app = FastAPI(title="Mental Illness Detection API (Lightweight)")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # ---------------- Request model ----------------
 class PredictionRequest(BaseModel):
